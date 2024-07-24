@@ -2,8 +2,8 @@
 Waypoint files for bots in plutonium. I've been trying to add bots to all of the custom maps that I can find that are not already covered by others in the Plutonium forums. Currently I only have files for IW5 (MW3).
 
 # Requirements
-1. Plutonium
-2. Bot Warfare mod (search here on GitHub)
+1. [Plutonium](https://plutonium.pw/)
+2. [Bot Warfare Mod](https://github.com/ineedbots/iw5_bot_warfare)
 
 # Usage
 
