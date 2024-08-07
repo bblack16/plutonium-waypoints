@@ -117,6 +117,7 @@ onPlayerSpawned() {
             self maps\mp\gametypes\_class::giveLoadout(self.team, "gamemode", false, true);
         }
         grantPerk("specialty_bling", false);
+        self disableWeaponPickup(); // Disable weapon pickups
         giveGunGameWeapon(true);
     }
 }

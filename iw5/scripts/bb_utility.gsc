@@ -719,7 +719,7 @@ getDefaultPlayerCountForMap(mapName) {
 // of map.
 setupDefaultPlayerCounts() {
     setDvarIfNotInitialized("map_default_player_count_duel", 2);
-    setDvarIfNotInitialized("map_default_player_count_tiny", 4);
+    setDvarIfNotInitialized("map_default_player_count_tiny", 6);
     setDvarIfNotInitialized("map_default_player_count_xsmall", 8);
     setDvarIfNotInitialized("map_default_player_count_small", 10);
     setDvarIfNotInitialized("map_default_player_count_medium", 12);
@@ -738,13 +738,13 @@ getMapSize(mapname) {
 		case "mp_melee_resort":
 		case "mp_poolday":
 		case "mp_poolparty":
+		case "mp_prison":
 		case "mp_shipment":
 			return "tiny";
 		case "mp_lego":
 		case "mp_minecraft":
 		case "mp_nuked":
 		case "mp_poolday_reunion":
-		case "mp_prison":
 		case "mp_rust":
 		case "mp_rust_long":
 		case "mp_rustbucket":
