@@ -64,8 +64,6 @@ onPlayerConnect() {
         player thread onPlayerSpawned();
         if (!player isBot()) {
             player displayCustomGameMode("^3REINFORCE");
-            player thread displayTeamLifeStatus();
-            player thread displayRoundStats();
         }
     }
 }
@@ -79,6 +77,10 @@ onPlayerSpawned() {
         self maps\mp\_utility::clearlowermessage("reinforce_spawn");
         self thread onPlayerDeath();
         self thread onFlagCapture();
+        if (!player isBot()) {
+            player thread displayTeamLifeStatus();
+            player thread displayRoundStats();
+        }
     }
 }
 

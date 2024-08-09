@@ -10,6 +10,8 @@
  * -------------------------
  * This script aims to recreate the hardpoint gamemode in IW5.
  *
+ * WARNING: This is a work in progress and does not do anything yet. Please do not use this
+ *
  * USAGE: Run "set custom_game_mode hardpoint" in a console and start a headquarters
  *        match
  *
