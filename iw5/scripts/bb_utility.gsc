@@ -140,36 +140,36 @@ setupStandardWeaponMaps() {
     // Weapon and attachment set up are all from code originally written by Resxt from their custom Gun Game script
     // which can be found here: https://github.com/Resxt/Plutonium-IW5-Scripts Big thanks to Resxt
     // for this great set up.
-    level.standard_weapon_categories["primary_weapons"] = ["assault_rifles", "sub_machine_guns", "light_machine_guns", "sniper_rifles", "shotguns"];
+    level.standard_weapon_categories["primary_weapons"]   = ["assault_rifles", "sub_machine_guns", "light_machine_guns", "sniper_rifles", "shotguns"];
     level.standard_weapon_categories["secondary_weapons"] = ["machine_pistols", "handguns", "launchers"];
     // Primaries
-    level.standard_available_weapons["primary_weapons"]["assault_rifles"] = ["iw5_m4_mp", "iw5_m16_mp", "iw5_scar_mp", "iw5_cm901_mp", "iw5_type95_mp", "iw5_g36c_mp", "iw5_acr_mp", "iw5_mk14_mp", "iw5_ak47_mp", "iw5_fad_mp"];
-    level.standard_available_weapons["primary_weapons"]["sub_machine_guns"] = ["iw5_mp5_mp", "iw5_ump45_mp", "iw5_pp90m1_mp", "iw5_p90_mp", "iw5_m9_mp", "iw5_mp7_mp", "iw5_ak74u_mp"];
+    level.standard_available_weapons["primary_weapons"]["assault_rifles"]     = ["iw5_m4_mp", "iw5_m16_mp", "iw5_scar_mp", "iw5_cm901_mp", "iw5_type95_mp", "iw5_g36c_mp", "iw5_acr_mp", "iw5_mk14_mp", "iw5_ak47_mp", "iw5_fad_mp"];
+    level.standard_available_weapons["primary_weapons"]["sub_machine_guns"]   = ["iw5_mp5_mp", "iw5_ump45_mp", "iw5_pp90m1_mp", "iw5_p90_mp", "iw5_m9_mp", "iw5_mp7_mp", "iw5_ak74u_mp"];
     level.standard_available_weapons["primary_weapons"]["light_machine_guns"] = ["iw5_sa80_mp", "iw5_mg36_mp", "iw5_pecheneg_mp", "iw5_mk46_mp", "iw5_m60_mp"];
-    level.standard_available_weapons["primary_weapons"]["sniper_rifles"] = ["iw5_barrett_mp", "iw5_l96a1_mp", "iw5_dragunov_mp", "iw5_as50_mp", "iw5_rsass_mp", "iw5_msr_mp", "iw5_cheytac_mp"];
-    level.standard_available_weapons["primary_weapons"]["shotguns"] = ["iw5_usas12_mp", "iw5_ksg_mp", "iw5_spas12_mp", "iw5_aa12_mp", "iw5_striker_mp", "iw5_1887_mp"];
-    level.standard_available_weapons["primary_weapons"]["riot_shield"] = ["riotshield_mp"];
+    level.standard_available_weapons["primary_weapons"]["sniper_rifles"]      = ["iw5_barrett_mp", "iw5_l96a1_mp", "iw5_dragunov_mp", "iw5_as50_mp", "iw5_rsass_mp", "iw5_msr_mp", "iw5_cheytac_mp"];
+    level.standard_available_weapons["primary_weapons"]["shotguns"]           = ["iw5_usas12_mp", "iw5_ksg_mp", "iw5_spas12_mp", "iw5_aa12_mp", "iw5_striker_mp", "iw5_1887_mp"];
+    level.standard_available_weapons["primary_weapons"]["riot_shield"]        = ["riotshield_mp"];
     // Secondaries
     level.standard_available_weapons["secondary_weapons"]["machine_pistols"] = ["iw5_g18_mp", "iw5_fmg9_mp", "iw5_mp9_mp", "iw5_skorpion_mp"];
-    level.standard_available_weapons["secondary_weapons"]["handguns"] = ["iw5_44magnum_mp", "iw5_usp45_mp", "iw5_deserteagle_mp", "iw5_mp412_mp", "iw5_p99_mp", "iw5_fnfiveseven_mp"];
-    level.standard_available_weapons["secondary_weapons"]["launchers"] = ["iw5_smaw_mp", "javelin_mp", "xm25_mp", "m320_mp", "rpg_mp", "stinger_mp"];
+    level.standard_available_weapons["secondary_weapons"]["handguns"]        = ["iw5_44magnum_mp", "iw5_usp45_mp", "iw5_deserteagle_mp", "iw5_mp412_mp", "iw5_p99_mp", "iw5_fnfiveseven_mp"];
+    level.standard_available_weapons["secondary_weapons"]["launchers"]       = ["iw5_smaw_mp", "javelin_mp", "xm25_mp", "m320_mp", "rpg_mp", "stinger_mp"];
     // Attachments
-    level.standard_available_attachments["weapon_assault"][0] = ["none", "reflex", "acog", "eotech", "hybrid", "thermal"];
-    level.standard_available_attachments["weapon_assault"][1] = ["none", "silencer", "heartbeat", "xmags", "shotgun"];
-    level.standard_available_attachments["weapon_smg"][0] = ["none", "reflexsmg", "acogsmg", "eotechsmg", "hamrhybrid", "thermalsmg"];
-    level.standard_available_attachments["weapon_smg"][1] = ["none", "silencer", "rof", "xmags"];
-    level.standard_available_attachments["weapon_lmg"][0] = ["none", "reflexlmg", "acog", "eotechlmg", "thermal"];
-    level.standard_available_attachments["weapon_lmg"][1] = ["none", "silencer", "grip", "rof", "heartbeat", "xmags"];
-    level.standard_available_attachments["weapon_sniper"][0] = ["none", "acog", "thermal"];
-    level.standard_available_attachments["weapon_sniper"][1] = ["none", "silencer03", "heartbeat", "xmags"];
-    level.standard_available_attachments["weapon_shotgun"][0] = ["none", "reflex", "eotech"];
-    level.standard_available_attachments["weapon_shotgun"][1] = ["none", "grip", "silencer03", "xmags"];
+    level.standard_available_attachments["weapon_assault"][0]        = ["none", "reflex", "acog", "eotech", "hybrid", "thermal"];
+    level.standard_available_attachments["weapon_assault"][1]        = ["none", "silencer", "heartbeat", "xmags", "shotgun", "gl"];
+    level.standard_available_attachments["weapon_smg"][0]            = ["none", "reflexsmg", "acogsmg", "eotechsmg", "hamrhybrid", "thermalsmg"];
+    level.standard_available_attachments["weapon_smg"][1]            = ["none", "silencer", "rof", "xmags"];
+    level.standard_available_attachments["weapon_lmg"][0]            = ["none", "reflexlmg", "acog", "eotechlmg", "thermal"];
+    level.standard_available_attachments["weapon_lmg"][1]            = ["none", "silencer", "grip", "rof", "heartbeat", "xmags"];
+    level.standard_available_attachments["weapon_sniper"][0]         = ["none", "acog", "thermal"];
+    level.standard_available_attachments["weapon_sniper"][1]         = ["none", "silencer03", "heartbeat", "xmags"];
+    level.standard_available_attachments["weapon_shotgun"][0]        = ["none", "reflex", "eotech"];
+    level.standard_available_attachments["weapon_shotgun"][1]        = ["none", "grip", "silencer03", "xmags"];
     level.standard_available_attachments["weapon_machine_pistol"][0] = ["none", "reflexsmg", "eotechsmg"];
     level.standard_available_attachments["weapon_machine_pistol"][1] = ["none", "silencer02", "akimbo", "xmags"];
-    level.standard_available_attachments["weapon_pistol"][0] = ["none", "akimbo", "tactical"];
-    level.standard_available_attachments["weapon_pistol"][1] = ["none", "silencer02", "xmags"];
+    level.standard_available_attachments["weapon_pistol"][0]         = ["none", "akimbo", "tactical"];
+    level.standard_available_attachments["weapon_pistol"][1]         = ["none", "silencer02", "xmags"];
     // Equipment
-    level.standard_available_lethal_equipment = ["frag_grenade_mp", "semtex_mp", "bouncingbetty_mp", "claymore_mp", "c4_mp", "throwingknife_mp"];
+    level.standard_available_lethal_equipment   = ["frag_grenade_mp", "semtex_mp", "bouncingbetty_mp", "claymore_mp", "c4_mp", "throwingknife_mp"];
     level.standard_available_tactical_equipment = ["flash_grenade_mp", "specialty_scrambler", "emp_grenade_mp", "trophy_mp", "specialty_portable_radar", "specialty_tacticalinsertion", "concussion_grenade_mp"];
     // Perks
     level.standard_perks_1 = ["specialty_longersprint", "specialty_fastreload", "specialty_scavenger", "specialty_blindeye", "specialty_paint"];
@@ -264,7 +264,7 @@ getRandomAttachments(weaponName) {
     // Process attachment slot 2.
     attachment = getRandomElement(level.standard_available_attachments[weaponClass][1]);
     // If we got a secondary attachment, we append it now.
-    if (attachment != "none" && !isAttachmentBanned(weaponName, attachment)) {
+    if (attachment != "none" && !isAttachmentBanned(weaponName, attachment) && areAttachmentsCompatible(scope, attachment)) {
         attachments = attachments + "_" + attachment;
     }
     // Fix attachments that need to be in an inverted order.
@@ -348,6 +348,15 @@ fixReversedAttachments(weaponName, attachments) {
     }
     // If we get here, we did not need to reverse the order.
     return attachments;
+}
+
+// Check to see if two attachments are compatible or not. This is used in weapon generation
+// to avoid bad weapon combos.
+areAttachmentsCompatible(scope, attachment) {
+    if (scope == "hybrid" && (attachment == "shotgun" || attachment == "gl")) {
+        return false;
+    }
+    return true;
 }
 
 // Get the default weapon scope for the given weapon.

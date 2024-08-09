@@ -97,7 +97,6 @@ onPlayerConnect() {
         player.pers["gun_game_current_index"] = 0;
         player.pers["gun_game_current_weapon"] = level.gun_game_weapons[0];
         player.pers["gun_game_highest_index"] = 0;
-        maps\mp\gametypes\_gamescore::giveplayerscore("gained_gun_score", player, player, 1, 1);
         // Attach monitoring threads to the player.
         player thread onPlayerSpawned();
         player thread onPlayerReload();
@@ -145,15 +144,25 @@ onPlayerKilled(ignore1, killer, ignore2, deathType, weapon, ignore3, ignore4, ig
             }
         }
     } else if (isDefined(killer) && isPlayer(Killer)) {
-        // Be sure the primary weapon matches the current killers weapon. This
-        // avoids multi kills skipping ranks.
-        // If the weapon contains the word shotgun in it, we count it. This is to allow
-        // underbarrel shotguns to get kills and count.
-        if (killer.pers["gun_game_current_weapon"] != weapon && !issubstr(weapon, "shotgun")) {
+        // Be sure the primary weapon matches the current killers weapon.
+        if (!killer isValidKill(weapon)) {
             return;
         }
         killer rankup();
     }
+}
+
+isValidKill(weapon) {
+    // If the weapon has a shotgun attached and this was a shotgun kill, it counts.
+    if (issubstr(self.pers["gun_game_current_weapon"], "_shotgun") && issubstr(weapon, "_shotgun_")) {
+        return true;
+    }
+    // If the weapon has a grenade laucnher attached and this was a gl kill, it counts.
+    if (issubstr(self.pers["gun_game_current_weapon"], "_gl_") && issubstr(weapon, "_gl_")) {
+        return true;
+    }
+    // All other kills only count if they match the current gun game weapon of the player.
+    return self.pers["gun_game_current_weapon"] == weapon;
 }
 
 isDroppableDeath(killer, deathType, weapon) {
@@ -259,7 +268,7 @@ rankup() {
     self thread maps\mp\gametypes\_rank::giverankxp("gained_gun_rank");
     maps\mp\gametypes\_gamescore::giveplayerscore("gained_gun_score", self, self, 1, 1);
     // If the player reached the max rank, we announce it. Otherwise, they get the next gun.
-    if (self.pers["gun_game_current_index"] == (getDvarInt("scr_gg_weapons") - 1)) {
+    if (self.pers["gun_game_current_index"] == (getDvarInt("scr_gg_weapons"))) {
         maps\mp\_utility::playsoundonplayers("mp_enemy_obj_captured");
         level thread maps\mp\_utility::teamplayercardsplash("callout_top_gun_rank", self);
     } else {
@@ -293,6 +302,8 @@ initWeaponHud() {
             color = "^2";
             if (self.pers["gun_game_highest_index"] > self.pers["gun_game_current_index"]) {
                 color = "^1";
+            } else if (self.pers["gun_game_current_index"] == getDvarInt("scr_gg_weapons") - 1) {
+                color = "^3";
             }
             lastIndex = self.pers["gun_game_current_index"];
             progressText setText("PROGRESS: " + color + (self.pers["gun_game_current_index"] + 1) + " / " + getDvarInt("scr_gg_weapons"));
