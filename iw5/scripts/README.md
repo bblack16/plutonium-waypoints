@@ -6,7 +6,7 @@ If you find any issues, feel free to log an issue here in GitHub. I cannot promi
 
 ## Utility
 
-The bb_utility.gsc script is a collection of common utility methods shared by many of my other scripts. It is a requirement for almost all of my scripts to work. Be sure to download this file and place it in your scripts directory before trying to use any other scripts you find here.
+The `bb_utility.gsc` script is a collection of common utility methods shared by many of my other scripts. It is a requirement for almost all of my scripts to work. Be sure to download this file and place it in your scripts directory before trying to use any other scripts you find here.
 
 Most of the methods have comments on what they do and ones that I have copied or heavily adapted from other creators I have added attribution and links to the original code. Many thanks to the awesome Plutonium community members that have posted their own scripts and tutorials to help others (like me).
 
@@ -18,7 +18,7 @@ The math I used to adjust for game modes works such that if a map's teambased si
 
 ## Friend Markers
 
-This is an early prototype and will likely see changes and improvements. My goal for this script was to make it easier to spot my friends in matches when playing with bots. Currently, this simply sets the headicon of all friendlu human players to their faction logo. This works well at short distances for spotting human friendlies. Ultimately, I want to replicate how some of the newer CoD titles display party members on the minimap in a different color, but that has so far proved to be a difficult thing to do.
+This is an early prototype and will likely see changes and improvements. My goal for this script was to make it easier to spot my friends in matches when playing with bots. Currently, this simply sets the headicon of all friendly human players to their faction logo. This works well at short distances for spotting human friendlies. Ultimately, I want to replicate how some of the newer CoD titles display party members on the minimap in a different color, but that has so far proved to be a difficult thing to do.
 
 ## Settings
 
@@ -30,28 +30,28 @@ I currently use the mapvote script created by Resxt that can be found here: http
 
 ## Game Modes
 
-The following are game modes I've tried to port from other Call of Duty titles into Modern Warfare 3. For the most part, I've tried to remain faithful to their official implementations, but in some cases, due to either engine differences or personal preference, I have deviated some. I've also implemented these game modes in a way where you can install them all at once and only activate them by setting the `custom_game_mode` dvar in the console. If you would like these game modes to be implemented in a map rotation, check out how I set that up in my `bb_settings.gcs` script using Resxt's excellent map rotation script.
+The following are game modes I've tried to port from other Call of Duty titles into Modern Warfare 3. For the most part, I've tried to remain faithful to their official implementations, but in some cases, due to either engine differences or personal preference, I have deviated some. I've also implemented these game modes in a way where you can install them all at once and activate them by setting the `custom_game_mode` dvar in the console. This makes it possible to add all of these game modes at once and put them into a map/mode rotation script. If you would like these game modes to be implemented in a map rotation, check out how I set that up in my `bb_settings.gcs` script using Resxt's excellent map rotation script.
 
 ### Gunfight
 
 ![screenshot](resources/images/gunfight.jpg)
 
-Gunfight is a teambased game mode where all players are given an identical, randomized loadout. Players have a single life per round and health regen is disabled. Teams have 40 seconds (by default) to eliminate the enemy players. At 40 seconds, if no team is eliminated, an overtime flag is spawned on the map and the first team to capture it (or eliminate the other team) wins. If no one captures the overtime flag, the team with the most health remaining wins the round. Play continues until 1 team has won 6 rounds total.
+Gunfight is a teambased game mode where all players are given an identical, randomized loadout. Players have a single life per round and health regen is disabled. Teams have 40 seconds (by default) to eliminate the enemy players. At 40 seconds, if no team is eliminated, an overtime flag is spawned on the map and the first team to capture it (or eliminate the other team) wins. If no one captures the overtime flag in 20 seconds, the team with the most health remaining wins the round. Play continues until 1 team has won 6 rounds total.
 
 **Usage:**
 1. Add the `bb_utility.gcs` script and the `gamemode_gunfight.gcs` script to your `%APPDATA%/Local/Plutonium/storage/iw5/scripts` directory.
 2. Open the console using tilde and type `set custom_game_mode gunfight`.
 3. Start a private match and select Headquarters as your game mode.
-    a. Optionally, you can use Team Deathmatch as the game mode, but there will be no overtime flag.
+  * _Optionally, you can use Team Deathmatch as the game mode, but there will be no overtime flag._
 4. Start the game and enjoy. If everything works, you should see the custom game mode name "GUNFIGHT" in the top right of your HUD.
 
 **Features:**
 - Fully randomized load outs, including perks and equipment.
 - If Overkill is selected as a perk, the randomized secondary becomes a primary (so you get two primaries).
 - Overtime flag is supported if you use headquarters as the base for the game mode. When using team deathmatch everything works, but there is no overtime flag.
-- Tactical insertion works. If you have a tac insert placed and are killed, you will be respawned. The second respawn will not give you another tac insert.
-- Loadouts are used for two rounds, then re-randomized. You can adjust this via a DVAR if you want random louads every round or every 3rd round, etc...
-- Spawn points change every round.
+- Tactical insertion works. If you have a tac insert placed and are killed, you will be respawned. The second respawn will not give you another tac insert so this is a one time respawn.
+- Loadouts are used for two rounds, then re-randomized. You can adjust this via a DVAR if you want random loadouts every round or every 3rd round, etc...
+- Team spawn points swap every round.
 - Team life trackers displayed in the HUD to show how many players are still alive on both teams.
 - Custom HUD elements display the current loadout each round.
 - Round status (wins/losses) shown at the top of the HUD.
@@ -59,16 +59,16 @@ Gunfight is a teambased game mode where all players are given an identical, rand
 
 **Differences:**
 - Grenades are not blocked for the first 5 seconds like in other titles. I probably could do this, but I don't feel it is necessary.
-- Typically gunfight only works on smaller maps, but in this version you can play on any map you want. In my opinion, this is how the other CoDs should have been to begin with.
+- Typically gunfight only works on smaller maps, but in this version you can play on any map you want. In my opinion, this is how the other CoDs should have been to begin with. This mode is fun, even on bigger maps.
 
 **Known Issues:**
-- When using Headquarters, spawns are a little funky in that player start slightly up in the air. This doesn't really affect anything and is a result of using the Team Deathmatch spawn system in Headquarters to ensure players always spawn with their team at the beginning of each round.
+- When using Headquarters, spawns are a little funky in that players start slightly up in the air. This doesn't really affect anything and is a result of using the Team Deathmatch spawn system in Headquarters to ensure players always spawn with their team at the beginning of each round. I may try to fix this at some point, but it is a low priority.
 
 ### Gun Game
 
 ![screenshot](resources/images/gun-game.jpg)
 
-While Gun Game does exist in the base game, it's implementation is pretty lacking. This is my custom version which is more based on some newer titles, with some fun extras thrown in for variety.
+While Gun Game does exist in the base game, its implementation is pretty lacking. This is my custom version which is based on some newer titles, with some fun extras thrown in for variety.
 
 I do want to give a specific shout out to Resxt who's custom gun game script really helped me learn the scripting for game modes and made this particular implementation possible. A chunk of the gun randomizing code is from their custom implementation found here: https://github.com/Resxt/Plutonium-IW5-Scripts/blob/main/gamemodes/gun_game.gsc
 
@@ -79,13 +79,13 @@ I do want to give a specific shout out to Resxt who's custom gun game script rea
 4. Start the game and enjoy. If everything works, you should see the custom game mode name "GUN GAME" in the top right of your HUD.
 
 **Features:**
-- Fully randomized guns with support to customize how many guns are required for a win. The max is set to 50 since there are only 51 total guns currently in the game.
+- Fully randomized guns with support to customize how many guns are required for a win. The default is 25 and the max is set to 50 since there are only ~50 total guns currently in the game.
 - Custom HUD elements display the current gun you are using as well as your progress.
-- Scores appropriately show your current level and the level of the highest player (in the enemy score bar).
+- Scores appropriately show your current level and the level of the highest enemy player (in the enemy score bar).
 - Melee kills and suicides set killed players back in rank. This can be disabled if you don't like this feature.
-- Scoring matches the scoring of the official Gun Game.
 - Custom DVARs can be set up to ban specific weapons if you want. I ban the javalin, for example, since it only works well in some maps.
-- Underbarrel shotguns are supported and work appropriately to progress their attached gun only.
+- Underbarrel shotguns are supported and work appropriately to progress their attached gun.
+- Guns automatically refill ammo on reload.
 - Bots are fully supported.
 
 **Differences:**
@@ -116,3 +116,8 @@ Reinfroce is a game mode that is somewhat of a mix between Domination and elimin
 
 **Known Issues:**
 - None currently.
+
+
+### Hardpoint
+
+Coming soon? This is very much a work in progress that I may or may not finish someday.

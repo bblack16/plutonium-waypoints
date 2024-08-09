@@ -77,9 +77,9 @@ onPlayerSpawned() {
         self maps\mp\_utility::clearlowermessage("reinforce_spawn");
         self thread onPlayerDeath();
         self thread onFlagCapture();
-        if (!player isBot()) {
-            player thread displayTeamLifeStatus();
-            player thread displayRoundStats();
+        if (!self isBot()) {
+            self thread displayTeamLifeStatus();
+            self thread displayRoundStats();
         }
     }
 }
