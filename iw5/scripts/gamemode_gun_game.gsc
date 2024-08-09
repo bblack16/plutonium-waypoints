@@ -8,7 +8,7 @@
 /*
  * -------------------------
  * Gamemode: Gun Game
- * author: Brandon Black
+ * author: GunMd0wn
  * -------------------------
  * This is a custom version of gun game that produces more randomized load outs
  * and is generally more similar to modern gun game modes over the version that
@@ -48,6 +48,12 @@ initGunGame() {
         setDvar("scr_gg_weapons", 50);
     }
     setDvar("scr_dm_scorelimit", getDvarInt("scr_gg_weapons")); // Number of weapons.
+    // Load the banned weapons list, if one was given.
+    if (isDvarInitialized("scr_gg_banned_weapons")) {
+        level.gun_game_banned_weapons = strtok(getDvar("scr_gg_banned_weapons"), ":");
+    } else {
+        level.gun_game_banned_weapons = [];
+    }
     initWeapons();
     maps\mp\gametypes\gun::setspecialloadout();
     // Set up all the score values.
@@ -139,7 +145,6 @@ onPlayerKilled(ignore1, killer, ignore2, deathType, weapon, ignore3, ignore4, ig
             }
         }
     } else if (isDefined(killer) && isPlayer(Killer)) {
-        Print("Player " + self.name + " killed by " + killer.name + " with " + weapon);
         // Be sure the primary weapon matches the current killers weapon. This
         // avoids multi kills skipping ranks.
         // If the weapon contains the word shotgun in it, we count it. This is to allow
@@ -209,11 +214,6 @@ initWeapons() {
         }
         baseWeapons[i] = weapon;
         Print("Weapon #" + (i + 1) + ": " + level.gun_game_weapons[i]);
-    }
-    if (setDvarIfNotInitialized("scr_gg_banned_weapons")) {
-        level.gun_game_banned_weapons = strtok(getDvar("scr_gg_banned_weapons"), ":");
-    } else {
-        level.gun_game_banned_weapons = [];
     }
 }
 

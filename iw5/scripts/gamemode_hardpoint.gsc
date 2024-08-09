@@ -6,7 +6,7 @@
 /*
  * -------------------------
  * Gamemode: Hardpoint
- * author: Brandon Black
+ * author: GunMd0wn
  * -------------------------
  * This script aims to recreate the hardpoint gamemode in IW5.
  *
@@ -29,14 +29,22 @@ init() {
 
 // Set up the game mode configuration.
 initHardpoint() {
-    // Set all the required dvars.
-    setDvar("scr_dom_roundlimit", 0); // No limit to the number of rounds since draws aren't even possible.
-    setDvar("scr_dom_winlimit", 4); // Require 4 rounds to win
-    setDvar("scr_dom_scorelimit", 4); // One point given per owned flag. Set to 4 since custom logic handles the round end.
-    setDvar("scr_dom_timelimit", 0); // No time linit
-    setDvar("scr_dom_halftime", 2); // TODO: This does not currently work...
-    // Set the UI up for the custom game mode.
-    setCustomObjectiveText("all", "Reinforce", "Eliminate all enemies or capture all zones", "Capture zones to respawn teammates");
+    // Set up gamemode defaults.
+    setDvarIfNotInitialized("scr_hp_scorelimit", 200);
+    setDvarIfNotInitialized("scr_hp_timelimit", 15);
+    // Set headquarters up to be hardpoint.
+    setDvar("scr_koth_scorelimit", getDvarInt("scr_hp_scorelimit"));
+    setDvar("scr_koth_timelimit", getDvar("scr_hp_timelimit"));
+    level.onspawnplayer = ::spawnOverride; // Remove Headquarter's spawn check so players can always respawn
+    level.capturetime = 1;
+}
+
+spawnOverride() {
+    return true;
+}
+
+onRadioCapture() {
+
 }
 
 // Watch for players connecting.
@@ -44,6 +52,9 @@ onPlayerConnect() {
     for(;;) {
         level waittill("connected", player);
         player thread onPlayerSpawned();
+        if (!player isBot()) {
+            player displayCustomGameMode("^3HARDPOINT");
+        }
     }
 }
 

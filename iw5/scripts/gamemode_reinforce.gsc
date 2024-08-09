@@ -6,7 +6,7 @@
 /*
  * -------------------------
  * Gamemode: Reinforce
- * author: Brandon Black
+ * author: GunMd0wn
  * -------------------------
  * This script aims to recreate the reinforce game mode found in several
  * Call of Duty titles. Reinforce is a combination of Domination and
@@ -62,6 +62,11 @@ onPlayerConnect() {
     for(;;) {
         level waittill("connected", player);
         player thread onPlayerSpawned();
+        if (!player isBot()) {
+            player displayCustomGameMode("^3REINFORCE");
+            player thread displayTeamLifeStatus();
+            player thread displayRoundStats();
+        }
     }
 }
 
@@ -74,11 +79,6 @@ onPlayerSpawned() {
         self maps\mp\_utility::clearlowermessage("reinforce_spawn");
         self thread onPlayerDeath();
         self thread onFlagCapture();
-        if (!self isBot()) {
-            self thread displayTeamLifeStatus();
-            self displayRoundStats();
-            self displayCustomGameMode("^3REINFORCE");
-        }
     }
 }
 

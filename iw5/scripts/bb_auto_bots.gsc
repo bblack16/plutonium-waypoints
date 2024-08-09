@@ -6,7 +6,7 @@
 /*
  * -------------------------
  * AUTO BOTS
- * author: Brandon Black
+ * author: GunMd0wn
  * -------------------------
  * This script is used to try and automatically populate maps with bots based on the size of the map
  * and the game mode being played. This also factors in the number of human players and attempts to adjust

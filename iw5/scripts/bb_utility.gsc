@@ -5,7 +5,7 @@
 /*
  * -------------------------
  * UTILITY METHODS
- * author: Brandon Black
+ * author: GunMd0wn
  * -------------------------
  * These are useful methods I intend to use in numerous scripts. Some of these are
  * my original code, but many are also sourced from other scripters. Credit for such
@@ -90,6 +90,21 @@ getRandomKey(map) {
 // Credit: Resxt - https://github.com/Resxt/Plutonium-IW5-Scripts 
 booleanFromPercentage(percent) {
     return randomint(100) <= percent;
+}
+
+/*
+ * ------------------------
+ * Player Methods
+ * ------------------------
+ */
+
+forceSpawnPlayer() {
+    // If no player was given, or the object is not a player or the player is
+    // already alive, then don't attempt to force spawn the player.
+    if (!isDefined(self) || !isPlayer(self) || isAlive(self)) {
+        return;
+    }
+    self maps\mp\gametypes\_playerlogic::spawnplayer();
 }
 
 /*
@@ -413,7 +428,7 @@ giveEquipment(name) {
             self setweaponammoclip(name, 2);
             break;
         case "emp_grenade_mp":
-            giveperk(name, false);
+            self setoffhandsecondaryclass("flash");
             self giveweapon(name);
             self setweaponammoclip(name, 1);
             break;
@@ -492,7 +507,7 @@ setCustomObjectiveText(team, modeName, scoreText, hintText) {
 }
 
 // Get the current round number.
-getRoundNumber() {
+getRoundsPlayed() {
     roundNumber = game["roundsPlayed"];
     if (!isDefined(roundNumber)) {
         return 1;
@@ -565,10 +580,10 @@ getTeamSize(team) {
 
 // Display the current game mode in the top right of the screen.
 displayCustomGameMode(mode) {
-    gameMode = createFontString( "Objective", 1.25 );
-    gameMode setPoint( "RIGHT", "TOP RIGHT", -5, 30 );
+    gameMode = createFontString("Objective", 1.25);
+    gameMode setPoint("RIGHT", "TOP RIGHT", -5, 30);
     gameMode.hideWhenInMenu = false;
-    gameMode.glowcolor = ( 0.2, 0.3, 0.7 );
+    gameMode.glowcolor = (0.2, 0.3, 0.7);
     gameMode.notifytitle.glowalpha = 1;
     gameMode setText(mode);
 }
@@ -578,8 +593,8 @@ displayCustomGameMode(mode) {
 displayRoundStats() {
     if (!isDefined(self.pers["bb_hud_round_stats"])) {
         // Create text to display at the top of the screen.
-        roundText = createFontString( "Objective", 0.75 );
-        roundText setPoint( "CENTER", "TOP", 0, 7.5 );
+        roundText = createFontString("Objective", 0.75);
+        roundText setPoint("CENTER", "TOP", 0, 7.5);
         roundText.hideWhenInMenu = false;
         self.pers["bb_hud_round_stats"] = roundText;
     }
@@ -597,37 +612,28 @@ displayRoundStats() {
 displayTeamLifeStatus() {
     level endon("game_ended");
 	self endon("disconnect");
-    // TODO: Add support for non-teambased games (maybe?)
-    friendlyStatus = undefined;
-    if (level.teambased) {
-        // Set up status for friendly team.
-        friendlyStatus = createFontString( "Objective", 1 );
-        friendlyStatus setPoint( "RIGHT", "TOP RIGHT", -5, 50 );
-        friendlyStatus.hideWhenInMenu = true;
-        friendlyStatus.glowcolor = ( 0.5, 0.5, 0.7 );
-        friendlyStatus.notifytitle.glowalpha = 1;
-    }
+    // Set up status for friendly team.
+    friendlyStatus = createFontString("Objective", 1);
+    friendlyStatus setPoint("RIGHT", "TOP RIGHT", -5, 50);
+    friendlyStatus.hideWhenInMenu = true;
+    friendlyStatus.glowcolor = (0.5, 0.5, 0.7);
+    friendlyStatus.notifytitle.glowalpha = 1;
     // Set up status for enemy team.
-    enemyStatus = createFontString( "Objective", 1 );
-    enemyStatus setPoint( "RIGHT", "TOP RIGHT", -5, 65 );
+    enemyStatus = createFontString("Objective", 1);
+    enemyStatus setPoint("RIGHT", "TOP RIGHT", -5, 65);
     enemyStatus.hideWhenInMenu = true;
-    enemyStatus.glowcolor = ( 0.5, 0.5, 0.7 );
+    enemyStatus.glowcolor = (0.5, 0.5, 0.7);
     enemyStatus.notifytitle.glowalpha = 1;
     // Start loop that keeps the team status updated.
-    while(true) {
+    for(;;) {
         // Refresh the team of the player
         friendlyTeam = self.team;
         if (isDefined(friendlyTeam) && friendlyTeam != "spectator") {
             enemyTeam = getOppositeTeam(friendlyTeam);
-            // Update the interface
-            if (level.teambased) {
-                friendlyStatus setText(getTeamName(friendlyTeam) + " " + getTeamLifeStatus(friendlyTeam, 4));
-            }
+            friendlyStatus setText(getTeamName(friendlyTeam) + " " + getTeamLifeStatus(friendlyTeam, 2));
             enemyStatus setText(getTeamName(enemyTeam) + " " + getTeamLifeStatus(enemyTeam, 1));
         } else {
-            if (level.teambased) {
-               friendlyStatus setText("");
-            }
+            friendlyStatus setText("");
             enemyStatus setText("");
         }
         wait 0.5;
@@ -727,7 +733,9 @@ setupDefaultPlayerCounts() {
     setDvarIfNotInitialized("map_default_player_count_xlarge", 16);
 }
 
-// The default mappings of sizes of each map.
+// The default mappings of sizes of each map. THese may be adjusted over time as
+// they are mostly my best assumptions on relative sizes for each map and as I test
+// all of them again I may adjust the sizes more.
 getMapSize(mapname) {
 	switch(mapname) {
 		case "mp_circle":
@@ -735,25 +743,25 @@ getMapSize(mapname) {
 			return "duel";
 		case "mp_gob_aim_snow":
 		case "mp_gulag":
-		case "mp_melee_resort":
 		case "mp_poolday":
 		case "mp_poolparty":
 		case "mp_prison":
 		case "mp_shipment":
 			return "tiny";
+        case "mp_burn_ss":
 		case "mp_lego":
+		case "mp_melee_resort":
 		case "mp_minecraft":
 		case "mp_nuked":
 		case "mp_poolday_reunion":
-		case "mp_rust":
 		case "mp_rust_long":
+		case "mp_rust":
 		case "mp_rustbucket":
 		case "mp_safehouse":
 		case "mp_shipmentlong":
 		case "mp_shortdust":
 		case "mp_showdown_sh":
 		case "so_deltacamp":
-        case "mp_burn_ss":
 			return "xsmall";
 		case "mp_base":
 		case "mp_bo2_town":
@@ -768,20 +776,28 @@ getMapSize(mapname) {
 		case "mp_osg_hijacked":
 		case "mp_port_d":
 		case "mp_wasteland_sh":
-        case "mp_six_ss":
         case "mp_courtyard_ss":
         case "mp_hillside_ss":
+        case "mp_six_ss":
 			return "small";
+		case "mp_bo2frost":
 		case "mp_bo2grind":
 		case "mp_bo2paintball":
 		case "mp_bo2plaza":
 		case "mp_bo2slums":
+		case "mp_boneyard":
+		case "mp_burgundy":
+		case "mp_cargoship_sh":
+		case "mp_cargoship":
+		case "mp_citystreets":
 		case "mp_compact":
 		case "mp_convoy":
 		case "mp_csgo_assault":
 		case "mp_csgo_office":
 		case "mp_dome":
 		case "mp_dwarf_sh":
+		case "mp_firingrange":
+		case "mp_hardhat":
 		case "mp_kwakelo":
 		case "mp_lockout_h2":
 		case "mp_mw2_rust":
@@ -790,33 +806,27 @@ getMapSize(mapname) {
 		case "mp_shipbreaker":
 		case "mp_toujane":
 		case "mp_tundra_depot":
-        case "mp_restrepo_ss":
         case "mp_aground_ss":
         case "mp_crosswalk_ss":
+        case "mp_restrepo_ss":
 			return "medium";
 		case "mp_alpha":
 		case "mp_asylum":
 		case "mp_backlot_sh":
 		case "mp_bloc_2":
 		case "mp_bloc_2_night":
-		case "mp_bo2frost":
 		case "mp_boardwalk":
 		case "mp_bog":
 		case "mp_bog_sh":
-		case "mp_boneyard":
 		case "mp_boomtown":
 		case "mp_bootleg":
 		case "mp_bootleg_sh":
 		case "mp_bravo":
 		case "mp_broadcast":
-		case "mp_burgundy":
 		case "mp_carbon":
 		case "mp_carentan_snow":
-		case "mp_cargoship":
-		case "mp_cargoship_sh":
 		case "mp_cement":
 		case "mp_cha_quad":
-		case "mp_citystreets":
 		case "mp_complex":
 		case "mp_countdown":
 		case "mp_crash":
@@ -831,8 +841,6 @@ getMapSize(mapname) {
 		case "mp_farm":
 		case "mp_fav_tropical":
 		case "mp_favela":
-		case "mp_firingrange":
-		case "mp_hardhat":
 		case "mp_highrise":
 		case "mp_highrise_sh":
 		case "mp_interchange":
