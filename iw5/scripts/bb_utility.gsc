@@ -155,7 +155,7 @@ setupStandardWeaponMaps() {
     level.standard_available_weapons["secondary_weapons"]["launchers"]       = ["iw5_smaw_mp", "javelin_mp", "xm25_mp", "m320_mp", "rpg_mp", "stinger_mp"];
     // Attachments
     level.standard_available_attachments["weapon_assault"][0]        = ["none", "reflex", "acog", "eotech", "hybrid", "thermal"];
-    level.standard_available_attachments["weapon_assault"][1]        = ["none", "silencer", "heartbeat", "xmags", "shotgun", "gl"];
+    level.standard_available_attachments["weapon_assault"][1]        = ["none", "silencer", "heartbeat", "xmags", "shotgun"]; // gl currently has issues and needs more testing
     level.standard_available_attachments["weapon_smg"][0]            = ["none", "reflexsmg", "acogsmg", "eotechsmg", "hamrhybrid", "thermalsmg"];
     level.standard_available_attachments["weapon_smg"][1]            = ["none", "silencer", "rof", "xmags"];
     level.standard_available_attachments["weapon_lmg"][0]            = ["none", "reflexlmg", "acog", "eotechlmg", "thermal"];
