@@ -144,6 +144,7 @@ onPlayerKilled(ignore1, killer, ignore2, deathType, weapon, ignore3, ignore4, ig
             }
         }
     } else if (isDefined(killer) && isPlayer(Killer)) {
+        Print("Player " + self.name + " killed by " + killer.name + " with " + weapon + "(" + deathType + ")");
         // Be sure the primary weapon matches the current killers weapon.
         if (!killer isValidKill(weapon)) {
             return;
@@ -159,6 +160,10 @@ isValidKill(weapon) {
     }
     // If the weapon has a grenade laucnher attached and this was a gl kill, it counts.
     if (issubstr(self.pers["gun_game_current_weapon"], "_gl_") && issubstr(weapon, "_gl_")) {
+        return true;
+    }
+    // This catches alt fires such as when hybrid or hamr scopes are used.
+    if (issubstr(weapon, self.pers["gun_game_current_weapon"])) {
         return true;
     }
     // All other kills only count if they match the current gun game weapon of the player.
