@@ -36,6 +36,8 @@ The following are game modes I've tried to port from other Call of Duty titles i
 
 ### Gunfight
 
+  > Requires [Bot Warfare](https://github.com/ineedbots/iw5_bot_warfare)
+
 ![screenshot](resources/images/gunfight.jpg)
 
 Gunfight is a teambased game mode where all players are given an identical, randomized loadout. Players have a single life per round and health regen is disabled. Teams have 40 seconds (by default) to eliminate the enemy players. At 40 seconds, if no team is eliminated, an overtime flag is spawned on the map and the first team to capture it (or eliminate the other team) wins. If no one captures the overtime flag in 20 seconds, the team with the most health remaining wins the round. Play continues until 1 team has won 6 rounds total.
@@ -67,6 +69,8 @@ Gunfight is a teambased game mode where all players are given an identical, rand
 - When using Headquarters, spawns are a little funky in that players start slightly up in the air. This doesn't really affect anything and is a result of using the Team Deathmatch spawn system in Headquarters to ensure players always spawn with their team at the beginning of each round. I may try to fix this at some point, but it is a low priority.
 
 ### Gun Game
+
+  > Requires [Bot Warfare](https://github.com/ineedbots/iw5_bot_warfare)
 
 ![screenshot](resources/images/gun-game.jpg)
 
