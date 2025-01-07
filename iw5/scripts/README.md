@@ -12,6 +12,8 @@ Most of the methods have comments on what they do and ones that I have copied or
 
 ## Auto Bots
 
+  > Requires [Bot Warfare](https://github.com/ineedbots/iw5_bot_warfare)
+
 This script uses the map sizing table from the utility script to try and automatically populate matches with bots based on the size of the map being played and the game mode. I will likely make adjustments over time as I playthrough all the maps again and again to get the best sizing (IMO), so some of the sizing may be a bit off at the moment. The script will also attempt to automatically balance teams so that when human players join, bots are kicked until teams are evened back out.
 
 The math I used to adjust for game modes works such that if a map's teambased size is 12 players, the non-teambased size would be 7. The logic behind this is that when playing 12 players (6v6) you have 6 enemies on the map. So in non-teambased, 7 players keeps that 6 enemy number which seems to work out very well. So the number is always half of the teambased value plus one.
