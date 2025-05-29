@@ -222,7 +222,11 @@ initWeapons() {
             loopProtection = 0;
             while(!isWeaponAllowed(weapon, baseWeapons) && loopProtection < 50) {
                 weapon = getRandomWeapon();
-                loopProtection++;
+		// Since the stinger is especially breaking for gun game, we do not increment loop
+                // protection until a different gun is selected.
+		if (weapon == 'stinger_mp') {
+                  loopProtection++;
+		}
             }
             level.gun_game_weapons[i] = decorateWeapon(weapon);
         }
