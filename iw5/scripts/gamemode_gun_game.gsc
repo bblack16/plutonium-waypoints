@@ -224,7 +224,7 @@ initWeapons() {
                 weapon = getRandomWeapon();
 		// Since the stinger is especially breaking for gun game, we do not increment loop
                 // protection until a different gun is selected.
-		if (weapon == 'stinger_mp') {
+		if (weapon != 'stinger_mp') {
                   loopProtection++;
 		}
             }
