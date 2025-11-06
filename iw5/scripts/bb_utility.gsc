@@ -852,6 +852,7 @@ getMapSize(mapname) {
 		case "mp_favela":
 		case "mp_highrise":
 		case "mp_highrise_sh":
+		case "mp_history_ground":
 		case "mp_interchange":
 		case "mp_italy":
 		case "mp_lambeth":
@@ -911,4 +912,5 @@ getMapSize(mapname) {
 		default:
 			return undefined;
 	}
+
 }
